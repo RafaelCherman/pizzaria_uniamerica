@@ -6,12 +6,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "tb_clientes", schema = "public")
-public class Cliente {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    private Long id;
+public class Cliente extends AbstractEntity{
 
     @Getter @Setter
     private String nome;
