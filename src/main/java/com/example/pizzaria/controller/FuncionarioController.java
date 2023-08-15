@@ -47,7 +47,7 @@ public class FuncionarioController {
         try{
             this.funcionarioService.cadastrar(funcionarioDTO);
 
-            return ResponseEntity.ok("");
+            return ResponseEntity.ok("Funcionario cadastrado com sucesso");
         }
         catch (Exception e)
         {
@@ -63,7 +63,7 @@ public class FuncionarioController {
         try {
             this.funcionarioService.editar(funcionarioDTO, id);
 
-            return ResponseEntity.ok("Pessoa alterada com sucesso");
+            return ResponseEntity.ok("Funcionario alterado com sucesso");
         }
         catch (Exception e)
         {

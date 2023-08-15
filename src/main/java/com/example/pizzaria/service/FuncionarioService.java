@@ -39,10 +39,10 @@ public class FuncionarioService {
 
     public void cadastrar(FuncionarioDTO funcionarioDTO)
     {
-        Assert.notNull(funcionarioDTO.getDs_funcao(), "Nulo");
-        Assert.notNull(funcionarioDTO.getNm_funcionario(), "Nulo");
-        Assert.notNull(funcionarioDTO.getNu_cpf_funcionario(), "Nulo");
-        //Verificar se cpf é unico
+        Assert.notNull(funcionarioDTO.getDs_funcao(), "Função não pode ser nula");
+        Assert.notNull(funcionarioDTO.getNm_funcionario(), "Nome não pode ser nulo");
+        Assert.notNull(funcionarioDTO.getNu_cpf_funcionario(), "CPF não pode ser nulo");
+        Assert.isTrue(!(this.funcionarioRepository.alreadyExists(funcionarioDTO.getNu_cpf_funcionario())), "CPF já cadastrado");
 
         Funcionario funcionario = convertToEntity(funcionarioDTO);
 
@@ -51,10 +51,14 @@ public class FuncionarioService {
 
     public void editar(FuncionarioDTO funcionarioDTO, Long id)
     {
-        Assert.notNull(funcionarioDTO.getDs_funcao(), "Nulo");
-        Assert.notNull(funcionarioDTO.getNm_funcionario(), "Nulo");
-        Assert.notNull(funcionarioDTO.getNu_cpf_funcionario(), "Nulo");
-        //Verificar se cpf mudou, caso não verificar se é unico
+        Assert.isTrue(funcionarioRepository.doesExist(id), "Funcionario não existe");
+        Assert.notNull(funcionarioDTO.getDs_funcao(), "Função não pode ser nula");
+        Assert.notNull(funcionarioDTO.getNm_funcionario(), "Nome não pode ser nulo");
+        Assert.notNull(funcionarioDTO.getNu_cpf_funcionario(), "CPF não pode ser nulo");
+        if(this.funcionarioRepository.alreadyExists(funcionarioDTO.getNu_cpf_funcionario()))
+        {
+            Assert.isTrue( this.funcionarioRepository.isTheSame(funcionarioDTO.getNu_cpf_funcionario()).equals(id) ,"Ja existe");
+        }
 
         Funcionario funcionario = convertToEntity(funcionarioDTO);
 
