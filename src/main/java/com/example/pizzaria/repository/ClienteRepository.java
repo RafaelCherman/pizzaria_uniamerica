@@ -8,11 +8,11 @@ import org.springframework.data.repository.query.Param;
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
     @Query("select exists (select c from Cliente c where c.cpf = :cpf)")
-    boolean alreadyExists(@Param("nome") final String cpf);
+    boolean alreadyExists(@Param("cpf") final String cpf);
 
-    @Query("select f.id from Funcionario f where f.nu_cpf_funcionario = :cpf")
-    Long isTheSame(@Param("nome") final String cpf);
+    @Query("select c.id from Cliente c where c.cpf = :cpf")
+    Long isTheSame(@Param("cpf") final String cpf);
 
-    @Query("select exists (select f from Funcionario f where f.id = :id)")
+    @Query("select exists (select c from Cliente c where c.id = :id)")
     boolean doesExist(@Param("id") final Long id);
 }
