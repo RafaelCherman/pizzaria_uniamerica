@@ -12,7 +12,7 @@ public class ClienteDTO {
     private String nome;
 
     @Getter @Setter
-    private String tel_celular ;
+    private String telCelular ;
 
     @Getter @Setter
     private String cpf;

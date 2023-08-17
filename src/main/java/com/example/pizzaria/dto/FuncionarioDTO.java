@@ -9,11 +9,11 @@ public class FuncionarioDTO {
     private Long id;
 
     @Getter @Setter
-    private String nm_funcionario;
+    private String nome;
 
     @Getter @Setter
-    private String nu_cpf_funcionario;
+    private String cpf;
 
     @Getter @Setter
-    private String ds_funcao;
+    private String funcao;
 }

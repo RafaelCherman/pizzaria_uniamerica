@@ -12,9 +12,11 @@ public abstract class AbstractEntity {
     @Id
     @Getter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Getter @Setter
+    @Column(name = "ativo")
     private boolean ativo;
 
     @PrePersist

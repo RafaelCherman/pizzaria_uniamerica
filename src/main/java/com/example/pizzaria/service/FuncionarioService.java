@@ -39,10 +39,10 @@ public class FuncionarioService {
 
     public void cadastrar(FuncionarioDTO funcionarioDTO)
     {
-        Assert.notNull(funcionarioDTO.getDs_funcao(), "Função não pode ser nula");
-        Assert.notNull(funcionarioDTO.getNm_funcionario(), "Nome não pode ser nulo");
-        Assert.notNull(funcionarioDTO.getNu_cpf_funcionario(), "CPF não pode ser nulo");
-        Assert.isTrue(!(this.funcionarioRepository.alreadyExists(funcionarioDTO.getNu_cpf_funcionario())), "CPF já cadastrado");
+        Assert.notNull(funcionarioDTO.getFuncao(), "Função não pode ser nula");
+        Assert.notNull(funcionarioDTO.getNome(), "Nome não pode ser nulo");
+        Assert.notNull(funcionarioDTO.getCpf(), "CPF não pode ser nulo");
+        Assert.isTrue(!(this.funcionarioRepository.alreadyExists(funcionarioDTO.getCpf())), "CPF já cadastrado");
 
         Funcionario funcionario = convertToEntity(funcionarioDTO);
 
@@ -52,12 +52,12 @@ public class FuncionarioService {
     public void editar(FuncionarioDTO funcionarioDTO, Long id)
     {
         Assert.isTrue(funcionarioRepository.doesExist(id), "Funcionario não existe");
-        Assert.notNull(funcionarioDTO.getDs_funcao(), "Função não pode ser nula");
-        Assert.notNull(funcionarioDTO.getNm_funcionario(), "Nome não pode ser nulo");
-        Assert.notNull(funcionarioDTO.getNu_cpf_funcionario(), "CPF não pode ser nulo");
-        if(this.funcionarioRepository.alreadyExists(funcionarioDTO.getNu_cpf_funcionario()))
+        Assert.notNull(funcionarioDTO.getFuncao(), "Função não pode ser nula");
+        Assert.notNull(funcionarioDTO.getNome(), "Nome não pode ser nulo");
+        Assert.notNull(funcionarioDTO.getCpf(), "CPF não pode ser nulo");
+        if(this.funcionarioRepository.alreadyExists(funcionarioDTO.getCpf()))
         {
-            Assert.isTrue( this.funcionarioRepository.isTheSame(funcionarioDTO.getNu_cpf_funcionario()).equals(id) ,"Ja existe");
+            Assert.isTrue( this.funcionarioRepository.isTheSame(funcionarioDTO.getCpf()).equals(id) ,"Ja existe");
         }
 
         Funcionario funcionario = convertToEntity(funcionarioDTO);
@@ -78,9 +78,9 @@ public class FuncionarioService {
     {
         FuncionarioDTO funcionarioDTO = new FuncionarioDTO();
         funcionarioDTO.setId(funcionario.getId());
-        funcionarioDTO.setNm_funcionario(funcionario.getNm_funcionario());
-        funcionarioDTO.setNu_cpf_funcionario(funcionario.getNu_cpf_funcionario());
-        funcionarioDTO.setDs_funcao(funcionario.getDs_funcao());
+        funcionarioDTO.setNome(funcionario.getNome());
+        funcionarioDTO.setCpf(funcionario.getCpf());
+        funcionarioDTO.setFuncao(funcionario.getFuncao());
 
         return funcionarioDTO;
     }
@@ -88,9 +88,9 @@ public class FuncionarioService {
     private Funcionario convertToEntity(FuncionarioDTO funcionarioDTO)
     {
         Funcionario funcionario = new Funcionario();
-        funcionario.setDs_funcao(funcionarioDTO.getDs_funcao());
-        funcionario.setNm_funcionario(funcionarioDTO.getNm_funcionario());
-        funcionario.setNu_cpf_funcionario(funcionarioDTO.getNu_cpf_funcionario());
+        funcionario.setFuncao(funcionarioDTO.getFuncao());
+        funcionario.setNome(funcionarioDTO.getNome());
+        funcionario.setCpf(funcionarioDTO.getCpf());
 
         return funcionario;
     }

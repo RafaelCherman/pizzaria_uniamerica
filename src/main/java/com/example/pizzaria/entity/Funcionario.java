@@ -10,11 +10,14 @@ public class Funcionario extends AbstractEntity{
 
 
     @Getter @Setter
-    private String nm_funcionario;
+    @Column(name = "nm_funcionario")
+    private String nome;
 
     @Getter @Setter
-    private String nu_cpf_funcionario;
+    @Column(name = "nu_cpf_funcionario")
+    private String cpf;
 
     @Getter @Setter
-    private String ds_funcao;
+    @Column(name = "ds_funcao")
+    private String funcao;
 }
