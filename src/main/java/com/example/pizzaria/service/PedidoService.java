@@ -6,7 +6,7 @@ import com.example.pizzaria.dto.EnderecoDTO;
 import com.example.pizzaria.dto.FuncionarioDTO;
 import com.example.pizzaria.dto.PedidoDTO;
 import com.example.pizzaria.entity.*;
-import com.example.pizzaria.DTO.ProdutoDiversoDTO;
+import com.example.pizzaria.dto.ProdutoDiversoDTO;
 import com.example.pizzaria.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,11 +48,15 @@ public class PedidoService {
 
     public void cadastrar(PedidoDTO pedidoDTO)
     {
-        /*Assert.notNull(funcionarioDTO.getFuncao(), "Função não pode ser nula");
-        Assert.notNull(funcionarioDTO.getNome(), "Nome não pode ser nulo");
-        Assert.notNull(funcionarioDTO.getCpf(), "CPF não pode ser nulo");
-        Assert.isTrue(!(this.funcionarioRepository.alreadyExists(funcionarioDTO.getCpf())), "CPF já cadastrado");
-        */
+        Assert.notNull(pedidoDTO.getCliente(), "Cliente não pode ser nulo");
+        Assert.notNull(pedidoDTO.getAtendente(), "Atedente não pode ser nulo");
+        Assert.notNull(pedidoDTO.isSolicitaEntrega(), "Solicitação de entrega não pode ser nula");
+        Assert.notNull(pedidoDTO.getEndereco(), "Endereço não pode ser nulo");
+        Assert.notNull(pedidoDTO.getPedido(), "Status do pedido não pode ser nulo");
+        Assert.notNull(pedidoDTO.getValorTotal(), "Valor não pode ser nulo");
+        Assert.notNull(pedidoDTO.getEntregador(), "Entregador não pode ser nulo");
+        Assert.notNull(pedidoDTO.getFormaPagamento(), "Forma de pagamento não pode ser nulo");
+
         Pedido pedido = convertToEntity(pedidoDTO);
 
         this.pedidoRepository.save(pedido);
@@ -60,15 +64,15 @@ public class PedidoService {
 
     public void editar(PedidoDTO pedidoDTO, Long id)
     {
-        /*
-        Assert.isTrue(funcionarioRepository.doesExist(id), "Funcionario não existe");
-        Assert.notNull(funcionarioDTO.getFuncao(), "Função não pode ser nula");
-        Assert.notNull(funcionarioDTO.getNome(), "Nome não pode ser nulo");
-        Assert.notNull(funcionarioDTO.getCpf(), "CPF não pode ser nulo");
-        if(this.funcionarioRepository.alreadyExists(funcionarioDTO.getCpf()))
-        {
-            Assert.isTrue( this.funcionarioRepository.isTheSame(funcionarioDTO.getCpf()).equals(id) ,"Ja existe");
-        }*/
+        Assert.isTrue(pedidoRepository.doesExist(id), "Pedido não existe");
+        Assert.notNull(pedidoDTO.getCliente(), "Cliente não pode ser nulo");
+        Assert.notNull(pedidoDTO.getAtendente(), "Atedente não pode ser nulo");
+        Assert.notNull(pedidoDTO.isSolicitaEntrega(), "Solicitação de entrega não pode ser nula");
+        Assert.notNull(pedidoDTO.getEndereco(), "Endereço não pode ser nulo");
+        Assert.notNull(pedidoDTO.getPedido(), "Status do pedido não pode ser nulo");
+        Assert.notNull(pedidoDTO.getValorTotal(), "Valor não pode ser nulo");
+        Assert.notNull(pedidoDTO.getEntregador(), "Entregador não pode ser nulo");
+        Assert.notNull(pedidoDTO.getFormaPagamento(), "Forma de pagamento não pode ser nulo");
 
         Pedido pedido = convertToEntity(pedidoDTO);
 
@@ -156,7 +160,7 @@ public class PedidoService {
     }
 
     private ProdutoDiversoDTO convertToProdutoDTO(ProdutoDiverso produtoDiverso) {
-        com.example.pizzaria.DTO.ProdutoDiversoDTO produtoDiversoDTO = new com.example.pizzaria.DTO.ProdutoDiversoDTO();
+        ProdutoDiversoDTO produtoDiversoDTO = new ProdutoDiversoDTO();
         produtoDiversoDTO.setTipo(produtoDiverso.getTipo());
         produtoDiversoDTO.setNome(produtoDiverso.getNome());
         produtoDiversoDTO.setPreco(produtoDiverso.getPreco());
