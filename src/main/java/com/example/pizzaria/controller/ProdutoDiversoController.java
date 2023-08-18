@@ -1,6 +1,6 @@
 package com.example.pizzaria.controller;
 
-import com.example.pizzaria.dto.ProdutoDiversoDTO;
+import com.example.pizzaria.DTO.ProdutoDiversoDTO;
 import com.example.pizzaria.repository.ProdutoDiversoRepositorio;
 import com.example.pizzaria.service.ProdutoDiversoService;
 import org.springframework.beans.factory.annotation.Autowired;
