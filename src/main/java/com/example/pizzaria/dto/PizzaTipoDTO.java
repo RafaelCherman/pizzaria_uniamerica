@@ -3,7 +3,7 @@ package com.example.pizzaria.DTO;
 import lombok.Data;
 
 @Data
-public class PizzaTipoDTO {,,
+public class PizzaTipoDTO {
 
     private String nome;
 

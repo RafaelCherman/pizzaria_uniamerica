@@ -3,9 +3,11 @@ package com.example.pizzaria.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
 @Table(name = "tb_tipo_pizzas", schema = "public")
+@Data
 public class PizzaTipo extends AbstractEntity{
 @Column(name = "nm_tipo_pizza")
     private String nome;
