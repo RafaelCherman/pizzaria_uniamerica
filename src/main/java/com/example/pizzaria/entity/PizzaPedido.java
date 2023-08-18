@@ -11,10 +11,12 @@ import lombok.Data;
 public class PizzaPedido extends AbstractEntity{
 @Column(name = "ds_observacao")
     private String observaca;
-@Column(name = "vl_preco_pago"
+@Column(name = "vl_preco_pago")
     private double valor;
 @Column(name = "id_pedido")
     private Pedido pedido;
+
 @Column(name = "id_tipo_pizza")
+@
     private PizzaTipo pizzaTipo;
 }
