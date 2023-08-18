@@ -1,8 +1,6 @@
 package com.example.pizzaria.dto;
 
 
-import com.example.pizzaria.DTO.FuncionarioDTO;
-import com.example.pizzaria.DTO.ProdutoDiversoDTO;
 
 import lombok.Data;
 
@@ -29,7 +27,7 @@ public class PedidoDTO {
 
     private String pedido;
 
-    private BigDecimal valorTotal;
+    private double valorTotal;
 
     private String formaPagamento;
 

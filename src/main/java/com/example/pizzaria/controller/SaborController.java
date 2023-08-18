@@ -1,6 +1,6 @@
 package com.example.pizzaria.controller;
 
-import com.example.pizzaria.DTO.SaborDTO;
+import com.example.pizzaria.dto.SaborDTO;
 import com.example.pizzaria.entity.Sabor;
 import com.example.pizzaria.repository.SaborRepository;
 import com.example.pizzaria.service.SaborService;

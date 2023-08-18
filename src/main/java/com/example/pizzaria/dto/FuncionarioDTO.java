@@ -1,4 +1,4 @@
-package com.example.pizzaria.DTO;
+package com.example.pizzaria.dto;
 
 import lombok.Getter;
 import lombok.Setter;

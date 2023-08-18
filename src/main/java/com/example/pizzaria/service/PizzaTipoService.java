@@ -1,7 +1,7 @@
 package com.example.pizzaria.service;
 
-import com.example.pizzaria.DTO.PizzaTipoDTO;
-import com.example.pizzaria.DTO.ProdutoDiversoDTO;
+import com.example.pizzaria.dto.PizzaTipoDTO;
+import com.example.pizzaria.dto.ProdutoDiversoDTO;
 import com.example.pizzaria.entity.PizzaTipo;
 import com.example.pizzaria.entity.ProdutoDiverso;
 import com.example.pizzaria.repository.PizzaTipoRepository;

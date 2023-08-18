@@ -43,7 +43,7 @@ public class Pedido extends AbstractEntity{
 
     @Column(name = "nu_valor_total")
     @Getter @Setter
-    private BigDecimal valorTotal;
+    private double valorTotal;
 
     @Column(name = "tp_forma_pagamento")
     @Getter @Setter
