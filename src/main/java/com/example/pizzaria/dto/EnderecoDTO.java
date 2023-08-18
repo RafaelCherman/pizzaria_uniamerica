@@ -1,4 +1,4 @@
-package com.example.pizzaria.dto;
+package com.example.pizzaria.DTO.ClienteDTO;
 
 
 import lombok.Getter;
