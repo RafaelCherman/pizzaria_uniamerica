@@ -21,65 +21,55 @@ public class ProdutoDiversoController {
     private ProdutoDiversoRepositorio produtoDiversoRepositorio;
 
     @PostMapping
-    public ResponseEntity<String> cadastrar(@RequestBody final ProdutoDiversoDTO produtoDiversoDTO){
+    public ResponseEntity<String> cadastrar(@RequestBody final ProdutoDiversoDTO produtoDiversoDTO) {
 
-        try{
+        try {
             this.produtoDiversoService.cadastrar(produtoDiversoDTO);
 
             return ResponseEntity.ok("Cadastrado com sucesso!");
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
 
     }
 
     @PutMapping
-    public ResponseEntity<String> editar(@RequestParam("id") final Long id, @RequestBody final ProdutoDiversoDTO produtoDiversoDTO){
+    public ResponseEntity<String> editar(@RequestParam("id") final Long id, @RequestBody final ProdutoDiversoDTO produtoDiversoDTO) {
 
-        try{
+        try {
             this.produtoDiversoService.editar(produtoDiversoDTO, id);
 
             return ResponseEntity.ok("Editado com sucesso!");
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 
-@GetMapping("all")
-    public ResponseEntity<List<ProdutoDiversoDTO>> findAll(){
-        try{
+    @GetMapping("all")
+    public ResponseEntity<List<ProdutoDiversoDTO>> findAll() {
+        try {
             return ResponseEntity.ok(this.produtoDiversoService.findAll());
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 
     @GetMapping
-    public ResponseEntity<ProdutoDiversoDTO> findById(@RequestParam("id") final Long id){
+    public ResponseEntity<ProdutoDiversoDTO> findById(@RequestParam("id") final Long id) {
 
-        try{
+        try {
             return ResponseEntity.ok(this.produtoDiversoService.findById(id));
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 
     @DeleteMapping
-    public ResponseEntity<String> deletar(@RequestParam("id") final Long id){
-        try{
+    public ResponseEntity<String> deletar(@RequestParam("id") final Long id) {
+        try {
             this.produtoDiversoRepositorio.deleteById(id);
             return ResponseEntity.ok("Deletado com sucesso!");
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }

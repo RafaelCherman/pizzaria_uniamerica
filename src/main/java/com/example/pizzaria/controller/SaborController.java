@@ -1,6 +1,7 @@
 package com.example.pizzaria.controller;
 
 import com.example.pizzaria.DTO.SaborDTO;
+import com.example.pizzaria.entity.Sabor;
 import com.example.pizzaria.repository.SaborRepository;
 import com.example.pizzaria.service.SaborService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class SaborController {
         }
     }
 
-    @GetMapping("all")
+    @GetMapping("/all")
     public ResponseEntity <List<SaborDTO>> findAll(){
         try{
             return ResponseEntity.ok(this.saborService.findAll());
@@ -57,4 +58,26 @@ public class SaborController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
+    @GetMapping
+    public ResponseEntity<SaborDTO> findById(@RequestParam final Long id){
+
+    try{
+
+        return ResponseEntity.ok(this.saborService.findById(id));
+    }
+    catch (Exception e){
+        throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+    }
+    }
+
+    @DeleteMapping
+    public ResponseEntity<String> deletar(@RequestParam("id") final Long id) {
+        try {
+            this.saborRepository.deleteById(id);
+            return ResponseEntity.ok("Deletado com sucesso!");
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
+    }
+
 }

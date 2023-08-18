@@ -1,6 +1,8 @@
 package com.example.pizzaria.service;
 
+import com.example.pizzaria.DTO.ProdutoDiversoDTO;
 import com.example.pizzaria.DTO.SaborDTO;
+import com.example.pizzaria.entity.ProdutoDiverso;
 import com.example.pizzaria.entity.Sabor;
 import com.example.pizzaria.repository.SaborRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +57,12 @@ public class SaborService {
 
     }
 
-
+    public SaborDTO findById(Long id) {
+        Sabor sabor = this.saborRepository.findById(id).orElse(null);
+        return sabor == null
+                ? null
+                : convertToDTO(sabor);
+    }
     private SaborDTO convertToDTO(Sabor sabor) {
         SaborDTO saborDTO = new SaborDTO();
         saborDTO.setNome(sabor.getSabor());
