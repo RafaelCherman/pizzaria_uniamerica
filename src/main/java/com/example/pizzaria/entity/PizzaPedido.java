@@ -13,11 +13,11 @@ public class PizzaPedido extends AbstractEntity {
     private String observaca;
     @Column(name = "vl_preco_pago")
     private double valor;
-    @Column(name = "id_pedido")
+    @JoinColumn(name = "id_pedido")
     @ManyToOne
     private Pedido pedido;
 
-    @Column(name = "id_tipo_pizza")
+    @JoinColumn(name = "id_tipo_pizza")
     @OneToOne
     private PizzaTipo pizzaTipo;
 
