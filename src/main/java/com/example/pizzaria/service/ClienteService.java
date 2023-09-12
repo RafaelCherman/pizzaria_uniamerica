@@ -42,7 +42,7 @@ public class ClienteService {
     public void cadastrar(ClienteDTO clienteDTO)
     {
         Assert.notNull(clienteDTO.getNome(), "Nome não pode ser nulo");
-        Assert.notNull(clienteDTO.getTel_celular(), "Telefone não pode ser nulo");
+        Assert.notNull(clienteDTO.getTelCelular(), "Telefone não pode ser nulo");
         Assert.notNull(clienteDTO.getCpf(), "CPF não pode ser nulo");
         Assert.isTrue(!(this.clienteRepository.alreadyExists(clienteDTO.getCpf())), "CPF já cadastrado");
 
@@ -54,7 +54,7 @@ public class ClienteService {
     public void editar(ClienteDTO clienteDTO, Long id)
     {
         Assert.notNull(clienteDTO.getNome(), "Nome não pode ser nulo");
-        Assert.notNull(clienteDTO.getTel_celular(), "Telefone não pode ser nulo");
+        Assert.notNull(clienteDTO.getTelCelular(), "Telefone não pode ser nulo");
         Assert.notNull(clienteDTO.getCpf(), "CPF não pode ser nulo");
         if(this.clienteRepository.alreadyExists(clienteDTO.getCpf()))
         {
@@ -79,7 +79,7 @@ public class ClienteService {
         clienteDTO.setId(cliente.getId());
         clienteDTO.setNome(cliente.getNome());
         clienteDTO.setCpf(cliente.getCpf());
-        clienteDTO.setTel_celular(cliente.getTel_celular());
+        clienteDTO.setTelCelular(cliente.getTelCelular());
 
         return clienteDTO;
     }
@@ -90,7 +90,7 @@ public class ClienteService {
 
         cliente.setCpf(clienteDTO.getCpf());
         cliente.setNome(clienteDTO.getNome());
-        cliente.setTel_celular(clienteDTO.getTel_celular());
+        cliente.setTelCelular(clienteDTO.getTelCelular());
 
         return cliente;
     }

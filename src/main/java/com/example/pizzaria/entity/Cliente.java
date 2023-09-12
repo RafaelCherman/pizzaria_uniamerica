@@ -9,11 +9,14 @@ import lombok.Setter;
 public class Cliente extends AbstractEntity{
 
     @Getter @Setter
+    @Column(name = "nome")
     private String nome;
 
     @Getter @Setter
-    private String tel_celular ;
+    @Column(name = "tel_celular")
+    private String telCelular ;
 
     @Getter @Setter
+    @Column(name = "cpf")
     private String cpf;
 }

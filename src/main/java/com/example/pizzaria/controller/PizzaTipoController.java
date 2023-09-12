@@ -1,7 +1,10 @@
 package com.example.pizzaria.controller;
 
+import com.example.pizzaria.dto.PizzaTipoDTO;
 import com.example.pizzaria.dto.ProdutoDiversoDTO;
+import com.example.pizzaria.repository.PizzaTipoRepository;
 import com.example.pizzaria.repository.ProdutoDiversoRepositorio;
+import com.example.pizzaria.service.PizzaTipoService;
 import com.example.pizzaria.service.ProdutoDiversoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,19 +15,19 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "api/produto_diverso")
-public class ProdutoDiversoController {
+@RequestMapping(value = "api/pizza_tipo")
+public class PizzaTipoController {
 
     @Autowired
-    private ProdutoDiversoService produtoDiversoService;
+    private PizzaTipoRepository pizzaTipoRepository;
     @Autowired
-    private ProdutoDiversoRepositorio produtoDiversoRepositorio;
+    private PizzaTipoService pizzaTipoService;
 
     @PostMapping
-    public ResponseEntity<String> cadastrar(@RequestBody final ProdutoDiversoDTO produtoDiversoDTO) {
+    public ResponseEntity<String> cadastrar(@RequestBody final PizzaTipoDTO pizzaTipoDTO) {
 
         try {
-            this.produtoDiversoService.cadastrar(produtoDiversoDTO);
+            this.pizzaTipoService.cadastrar(pizzaTipoDTO);
 
             return ResponseEntity.ok("Cadastrado com sucesso!");
         } catch (Exception e) {
@@ -34,10 +37,10 @@ public class ProdutoDiversoController {
     }
 
     @PutMapping
-    public ResponseEntity<String> editar(@RequestParam("id") final Long id, @RequestBody final ProdutoDiversoDTO produtoDiversoDTO) {
+    public ResponseEntity<String> editar(@RequestParam("id") final Long id, @RequestBody final PizzaTipoDTO pizzaTipoDTO) {
 
         try {
-            this.produtoDiversoService.editar(produtoDiversoDTO, id);
+            this.pizzaTipoService.editar(pizzaTipoDTO, id);
 
             return ResponseEntity.ok("Editado com sucesso!");
         } catch (Exception e) {
@@ -46,19 +49,19 @@ public class ProdutoDiversoController {
     }
 
     @GetMapping("all")
-    public ResponseEntity<List<ProdutoDiversoDTO>> findAll() {
+    public ResponseEntity<List<PizzaTipoDTO>> findAll() {
         try {
-            return ResponseEntity.ok(this.produtoDiversoService.findAll());
+            return ResponseEntity.ok(this.pizzaTipoService.findAll());
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 
     @GetMapping
-    public ResponseEntity<ProdutoDiversoDTO> findById(@RequestParam("id") final Long id) {
+    public ResponseEntity<PizzaTipoDTO> findById(@RequestParam("id") final Long id) {
 
         try {
-            return ResponseEntity.ok(this.produtoDiversoService.findById(id));
+            return ResponseEntity.ok(this.pizzaTipoService.findById(id));
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
@@ -67,10 +70,12 @@ public class ProdutoDiversoController {
     @DeleteMapping
     public ResponseEntity<String> deletar(@RequestParam("id") final Long id) {
         try {
-            this.produtoDiversoRepositorio.deleteById(id);
+            this.pizzaTipoRepository.deleteById(id);
             return ResponseEntity.ok("Deletado com sucesso!");
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
+
+
 }

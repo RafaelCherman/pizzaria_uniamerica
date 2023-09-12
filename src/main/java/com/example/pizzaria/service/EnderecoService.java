@@ -104,7 +104,7 @@ public class EnderecoService {
         clienteDTO.setId(cliente.getId());
         clienteDTO.setNome(cliente.getNome());
         clienteDTO.setCpf(cliente.getCpf());
-        clienteDTO.setTel_celular(cliente.getTel_celular());
+        clienteDTO.setTelCelular(cliente.getTelCelular());
 
         return clienteDTO;
     }
@@ -115,7 +115,7 @@ public class EnderecoService {
 
         cliente.setCpf(clienteDTO.getCpf());
         cliente.setNome(clienteDTO.getNome());
-        cliente.setTel_celular(clienteDTO.getTel_celular());
+        cliente.setTelCelular(clienteDTO.getTelCelular());
 
         return cliente;
     }
