@@ -7,6 +7,7 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -39,7 +40,7 @@ public class Pedido extends AbstractEntity{
 
     @Column(name = "st_pedido")
     @Getter @Setter
-    private String pedido;
+    private String StPedido;
 
     @Column(name = "nu_valor_total")
     @Getter @Setter
@@ -57,6 +58,10 @@ public class Pedido extends AbstractEntity{
     @Getter @Setter
     private Date dataPedido;
 
+    @Column(name="co_pizza")
+    @ManyToMany
+    private List<Pizza> pizzas;
+
     @ManyToMany
     @JoinTable(
             name = "tb_produtos_pedido",
@@ -65,4 +70,6 @@ public class Pedido extends AbstractEntity{
     )
     @Getter @Setter
     private Set<ProdutoDiverso> produtos = new HashSet<ProdutoDiverso>();
+
+
 }

@@ -104,7 +104,7 @@ public class PedidoService {
         pedido.setAtendente(convertToFuncionarioEntity(pedidoDTO.getAtendente()));
         pedido.setEndereco(convertToEnderecoEntity(pedidoDTO.getEndereco()));
         pedido.setSolicitaEntrega(pedidoDTO.isSolicitaEntrega());
-        pedido.setPedido(pedidoDTO.getPedido());
+//        pedido.setPedido(pedidoDTO.getPedido());
         pedido.setValorTotal(pedidoDTO.getValorTotal());
         pedido.setEntregador(convertToFuncionarioEntity(pedidoDTO.getEntregador()));
         pedido.setFormaPagamento(pedidoDTO.getFormaPagamento());
@@ -131,7 +131,7 @@ public class PedidoService {
         pedidoDTO.setAtendente(convertToFuncionarioDTO(pedido.getAtendente()));
         pedidoDTO.setEndereco(convertToEnderecoDTO(pedido.getEndereco()));
         pedidoDTO.setSolicitaEntrega(pedido.isSolicitaEntrega());
-        pedidoDTO.setPedido(pedido.getPedido());
+//        pedidoDTO.setPedido(pedido.getPedido());
         pedidoDTO.setValorTotal(pedido.getValorTotal());
         pedidoDTO.setEntregador(convertToFuncionarioDTO(pedido.getEntregador()));
         pedidoDTO.setFormaPagamento(pedido.getFormaPagamento());

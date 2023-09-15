@@ -20,9 +20,6 @@ public class PizzaTipoService {
     private PizzaTipoRepository pizzaTipoRepository;
 
     public void cadastrar(PizzaTipoDTO pizzaTipoDTO) {
-        Assert.notNull(pizzaTipoDTO.getTamanho(), "Tipo nao pode ser Nulo");
-        Assert.notNull(pizzaTipoDTO.getNome(), "Nome nao pode ser Nulo");
-        Assert.notNull(pizzaTipoDTO.getValor(), "Preco nao pode ser Nulo");
 
         PizzaTipo salvarEmBanco = convertToEntity(pizzaTipoDTO);
         this.pizzaTipoRepository.save(salvarEmBanco);
@@ -30,10 +27,6 @@ public class PizzaTipoService {
     }
 
     public void editar(PizzaTipoDTO pizzaTipoDTO, Long id) {
-
-        Assert.notNull(pizzaTipoDTO.getNome(), "Nome nao pode ser Nulo");
-        Assert.notNull(pizzaTipoDTO.getValor(), "Preco nao pode ser Nulo");
-        Assert.notNull(pizzaTipoDTO.getTamanho(), "Quantidade nao pode ser Nulo");
 
         PizzaTipo pizzaTipo = convertToEntity(pizzaTipoDTO);
         this.pizzaTipoRepository.save(pizzaTipo);
@@ -49,7 +42,7 @@ public class PizzaTipoService {
 
 
 
-    private PizzaTipo convertToEntity(PizzaTipoDTO pizzaTipoDTO) {
+    public PizzaTipo convertToEntity(PizzaTipoDTO pizzaTipoDTO) {
         PizzaTipo pizzaTipo = new PizzaTipo();
         pizzaTipo.setTamanho(pizzaTipoDTO.getTamanho());
         pizzaTipo.setNome(pizzaTipoDTO.getNome());
@@ -58,7 +51,7 @@ public class PizzaTipoService {
         return pizzaTipo;
     }
 
-    private PizzaTipoDTO convertToDTO(PizzaTipo pizzaTipo) {
+    public PizzaTipoDTO convertToDTO(PizzaTipo pizzaTipo) {
         PizzaTipoDTO pizzaTipoDTO = new PizzaTipoDTO();
         pizzaTipoDTO.setTamanho(pizzaTipo.getTamanho());
         pizzaTipoDTO.setNome(pizzaTipo.getNome());

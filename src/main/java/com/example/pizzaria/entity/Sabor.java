@@ -13,5 +13,6 @@ public class Sabor extends AbstractEntity {
     private String sabor;
     @Column(name = "ds_ingredientes")
     private String ingredientes;
+    @Column(name = "vl_sabor")
     private double valor;
 }

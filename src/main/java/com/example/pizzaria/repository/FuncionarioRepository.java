@@ -9,10 +9,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
 
-    @Query("select exists (select f from Funcionario f where f.nu_cpf_funcionario = :cpf)")
+    @Query("select exists (select f from Funcionario f where f.cpf = :cpf)")
     boolean alreadyExists(@Param("cpf") final String cpf);
 
-    @Query("select f.id from Funcionario f where f.nu_cpf_funcionario = :cpf")
+    @Query("select f.id from Funcionario f where f.cpf = :cpf")
     Long isTheSame(@Param("cpf") final String cpf);
 
     @Query("select exists (select f from Funcionario f where f.id = :id)")

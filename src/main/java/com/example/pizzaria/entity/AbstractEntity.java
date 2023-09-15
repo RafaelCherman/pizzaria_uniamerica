@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public abstract class AbstractEntity {
 
     @Id
-    @Getter
+    @Getter @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
