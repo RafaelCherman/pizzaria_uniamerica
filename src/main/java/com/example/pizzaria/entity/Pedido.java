@@ -6,10 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -62,9 +60,14 @@ public class Pedido extends AbstractEntity{
     @Getter @Setter
     private Date dataPedido;
 
-    @Column(name="co_pizza")
+
     @ManyToMany
-    private List<Pizza> pizzas;
+    @JoinTable(
+            name = "tb_pizzas_pedido",
+            joinColumns = @JoinColumn(name = "id_pedido_fk"),
+            inverseJoinColumns = @JoinColumn(name = "id_pizza_fk")
+    )
+    private Set<Pizza> pizzas = new HashSet<Pizza>();
 
     @ManyToMany
     @JoinTable(
