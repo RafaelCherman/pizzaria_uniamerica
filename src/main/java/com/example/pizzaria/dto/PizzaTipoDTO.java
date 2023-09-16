@@ -4,11 +4,15 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NotNull(message = "O campo nome é obrigatório")
 @NotBlank(message = "O campo nome não pode ser vazio")
+@NoArgsConstructor
+@AllArgsConstructor
 public class PizzaTipoDTO {
 
     @Size(min = 3, max = 250, message = "O nome deve ter entre 3 e 250 caracteres")

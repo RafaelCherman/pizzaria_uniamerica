@@ -1,7 +1,9 @@
 package com.example.pizzaria.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -12,6 +14,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_pedidos", schema = "public")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Pedido extends AbstractEntity{
 
     @ManyToOne
@@ -40,7 +44,7 @@ public class Pedido extends AbstractEntity{
 
     @Column(name = "st_pedido")
     @Getter @Setter
-    private String StPedido;
+    private String pedido;
 
     @Column(name = "nu_valor_total")
     @Getter @Setter
