@@ -45,7 +45,7 @@ public class EnderecoService {
         Assert.notNull(enderecoDTO.getRua(), "Rua não pode ser nula");
         Assert.notNull(enderecoDTO.getNuEndereco(), "Numero do endereço não pode ser nulo");
         Assert.notNull(enderecoDTO.getBairro(), "Bairro não pode ser nulo");
-        Assert.notNull(enderecoDTO.getClienteDTO(), "Cliente não pode ser nulo");
+        Assert.notNull(enderecoDTO.getCliente(), "Cliente não pode ser nulo");
         Endereco endereco = convertToEntity(enderecoDTO);
 
         this.enderecoRepository.save(endereco);
@@ -57,7 +57,7 @@ public class EnderecoService {
         Assert.notNull(enderecoDTO.getRua(), "Rua não pode ser nula");
         Assert.notNull(enderecoDTO.getNuEndereco(), "Numero do endereço não pode ser nulo");
         Assert.notNull(enderecoDTO.getBairro(), "Bairro não pode ser nulo");
-        Assert.notNull(enderecoDTO.getClienteDTO(), "Cliente não pode ser nulo");
+        Assert.notNull(enderecoDTO.getCliente(), "Cliente não pode ser nulo");
         Endereco endereco = convertToEntity(enderecoDTO);
 
         this.enderecoRepository.save(endereco);
@@ -78,7 +78,7 @@ public class EnderecoService {
         enderecoDTO.setRua(endereco.getRua());
         enderecoDTO.setBairro(endereco.getBairro());
         enderecoDTO.setComplemento(endereco.getComplemento());
-        enderecoDTO.setClienteDTO(convertClienteToDTO(endereco.getCliente()));
+        enderecoDTO.setCliente(convertClienteToDTO(endereco.getCliente()));
 
         return enderecoDTO;
     }
@@ -92,7 +92,7 @@ public class EnderecoService {
         endereco.setRua(enderecoDTO.getRua());
         endereco.setBairro(enderecoDTO.getBairro());
         endereco.setComplemento(enderecoDTO.getComplemento());
-        endereco.setCliente(convertClienteToEntity(enderecoDTO.getClienteDTO()));
+        endereco.setCliente(convertClienteToEntity(enderecoDTO.getCliente()));
 
         return endereco;
     }
