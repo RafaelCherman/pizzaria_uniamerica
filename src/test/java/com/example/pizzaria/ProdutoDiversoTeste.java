@@ -57,7 +57,7 @@ public class ProdutoDiversoTeste {
     @Test
     void testeCadastrar()
     {
-        ProdutoDiversoDTO produtoDiversoDTO = new ProdutoDiversoDTO(1l,"coca-cola","refrigerante",1,4.99,true);
+        ProdutoDiversoDTO produtoDiversoDTO = new ProdutoDiversoDTO("coca-cola","refrigerante",1,4.99);
         var teste = controller.cadastrar(produtoDiversoDTO);
         Assert.assertTrue(teste.getBody().contains("Cadastrado"));
     }
@@ -65,7 +65,8 @@ public class ProdutoDiversoTeste {
     @Test
     void testeEditar()
     {
-        ProdutoDiversoDTO produtoDiversoDTO = new ProdutoDiversoDTO(1l,"coca-cola","refrigerante",1,4.99,true);
+        ProdutoDiversoDTO produtoDiversoDTO = new ProdutoDiversoDTO("coca-cola","refrigerante",1,4.99);
+        produtoDiversoDTO.setId(1l);
         var teste = controller.editar(1l, produtoDiversoDTO);
         Assert.assertTrue(teste.getBody().contains("Editado"));
     }
