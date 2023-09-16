@@ -1,16 +1,17 @@
 package com.example.pizzaria.dto;
 
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
-public class EnderecoDTO {
+public class EnderecoDTO extends AbstractEntityDTO {
 
     @Getter @Setter
-    private Long id;
+    private String telResidencia;
 
     @Getter @Setter
     private String rua;
@@ -25,9 +26,10 @@ public class EnderecoDTO {
     private String cep;
 
     @Getter @Setter
+
     private String complemento;
 
     @Getter @Setter
-    private ClienteDTO clienteDTO;
+    private ClienteDTO cliente;
 
 }

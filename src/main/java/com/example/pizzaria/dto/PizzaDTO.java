@@ -11,9 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NotBlank(message = "O campo não pode ser vazio")
 @NotNull(message = "O campo não pode ser nulo")
-public class PizzaDTO{
-    private Long id;
-    private boolean ativo;
+public class PizzaDTO extends AbstractEntityDTO{
     private PizzaTipoDTO tipoDTO;
     private SaborDTO saborDTO;
 

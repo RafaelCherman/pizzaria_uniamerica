@@ -14,10 +14,10 @@ import lombok.NoArgsConstructor;
 @NotBlank(message = "O campo nome não pode ser vazio")
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProdutoDiversoDTO {
+public class ProdutoDiversoDTO extends AbstractEntityDTO{
 
 
-    private Long id;
+
     @Size(min = 3, max = 150, message = "O nome deve ter entre 3 e 150 caracteres")
     private String nome;
     @Size(min = 3, max = 250, message = "O tipo deve ter entre 3 e 250 caracteres")
@@ -26,5 +26,4 @@ public class ProdutoDiversoDTO {
     private int quantidade;
     @Min(value = 0, message = "O valor não pode ser negativo")
     private double preco;
-    private boolean ativo;
 }

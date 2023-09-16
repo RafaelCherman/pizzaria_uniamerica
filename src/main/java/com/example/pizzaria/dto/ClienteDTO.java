@@ -6,10 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClienteDTO {
-
-    @Getter @Setter
-    private Long id;
+public class ClienteDTO extends AbstractEntityDTO{
 
     @Getter @Setter
     private String nome;
