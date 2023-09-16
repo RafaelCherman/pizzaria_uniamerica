@@ -56,7 +56,7 @@ public class PedidoController {
     }
 
     @PutMapping
-    ResponseEntity<String> editar(
+    public ResponseEntity<String> editar(
             @RequestParam("id") final Long id,
             @RequestBody final PedidoDTO pedidoDTO)
     {
@@ -71,7 +71,8 @@ public class PedidoController {
         }
     }
 
-    @DeleteMapping ResponseEntity<String> deletar(@RequestParam("id") final Long id)
+    @DeleteMapping
+    public ResponseEntity<String> deletar(@RequestParam("id") final Long id)
     {
         try {
             this.pedidoService.deletar(id);
