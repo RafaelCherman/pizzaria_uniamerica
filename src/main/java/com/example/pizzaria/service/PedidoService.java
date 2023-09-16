@@ -8,6 +8,7 @@ import com.example.pizzaria.dto.PedidoDTO;
 import com.example.pizzaria.entity.*;
 import com.example.pizzaria.dto.ProdutoDiversoDTO;
 import com.example.pizzaria.repository.PedidoRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -24,6 +25,9 @@ public class PedidoService {
     @Autowired
     private PedidoRepository pedidoRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
 
     public List<PedidoDTO> findAll(){
         List<Pedido> pedidos = this.pedidoRepository.findAll();
@@ -31,7 +35,7 @@ public class PedidoService {
 
         for(Pedido i : pedidos)
         {
-            pedidosDTO.add(convertToDTO(i));
+            pedidosDTO.add(modelMapper.map(i, PedidoDTO.class));
         }
 
         return pedidosDTO;
@@ -43,38 +47,24 @@ public class PedidoService {
 
         return pedido == null
                 ? null
-                : convertToDTO(pedido);
+                : modelMapper.map(pedido, PedidoDTO.class);
     }
 
     public void cadastrar(PedidoDTO pedidoDTO)
     {
-        Assert.notNull(pedidoDTO.getCliente(), "Cliente não pode ser nulo");
-        Assert.notNull(pedidoDTO.getAtendente(), "Atedente não pode ser nulo");
-        Assert.notNull(pedidoDTO.isSolicitaEntrega(), "Solicitação de entrega não pode ser nula");
-        Assert.notNull(pedidoDTO.getEndereco(), "Endereço não pode ser nulo");
-        Assert.notNull(pedidoDTO.getPedido(), "Status do pedido não pode ser nulo");
-        Assert.notNull(pedidoDTO.getValorTotal(), "Valor não pode ser nulo");
-        Assert.notNull(pedidoDTO.getEntregador(), "Entregador não pode ser nulo");
-        Assert.notNull(pedidoDTO.getFormaPagamento(), "Forma de pagamento não pode ser nulo");
 
-        Pedido pedido = convertToEntity(pedidoDTO);
 
-        this.pedidoRepository.save(pedido);
+
+        this.pedidoRepository.save(modelMapper.map(pedidoDTO, Pedido.class));
     }
 
     public void editar(PedidoDTO pedidoDTO, Long id)
     {
         Assert.isTrue(pedidoRepository.doesExist(id), "Pedido não existe");
-        Assert.notNull(pedidoDTO.getCliente(), "Cliente não pode ser nulo");
-        Assert.notNull(pedidoDTO.getAtendente(), "Atedente não pode ser nulo");
-        Assert.notNull(pedidoDTO.isSolicitaEntrega(), "Solicitação de entrega não pode ser nula");
-        Assert.notNull(pedidoDTO.getEndereco(), "Endereço não pode ser nulo");
-        Assert.notNull(pedidoDTO.getPedido(), "Status do pedido não pode ser nulo");
-        Assert.notNull(pedidoDTO.getValorTotal(), "Valor não pode ser nulo");
-        Assert.notNull(pedidoDTO.getEntregador(), "Entregador não pode ser nulo");
-        Assert.notNull(pedidoDTO.getFormaPagamento(), "Forma de pagamento não pode ser nulo");
 
-        Pedido pedido = convertToEntity(pedidoDTO);
+
+        Pedido pedido = this.pedidoRepository.findById(id).orElse(null);
+        modelMapper.map(pedidoDTO, pedido);
 
         this.pedidoRepository.save(pedido);
     }
@@ -95,7 +85,7 @@ public class PedidoService {
 
 
 
-
+/*
     private Pedido convertToEntity(PedidoDTO pedidoDTO)
     {
         Pedido pedido = new Pedido();
@@ -241,4 +231,6 @@ public class PedidoService {
 
         return endereco;
     }
+    */
+
 }
