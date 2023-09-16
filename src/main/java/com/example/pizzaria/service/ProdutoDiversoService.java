@@ -62,6 +62,7 @@ public class ProdutoDiversoService {
         produtoDiversoDTO.setNome(produtoDiverso.getNome());
         produtoDiversoDTO.setPreco(produtoDiverso.getPreco());
         produtoDiversoDTO.setQuantidade(produtoDiverso.getQuantidade());
+        produtoDiversoDTO.setId(produtoDiverso.getId());
         return produtoDiversoDTO;
     }
 
