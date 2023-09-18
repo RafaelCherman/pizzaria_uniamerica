@@ -43,11 +43,10 @@ public class PedidoService {
 
     public PedidoDTO findById(Long id)
     {
-        Pedido pedido = this.pedidoRepository.findById(id).orElse(null);
+        Pedido pedido = this.pedidoRepository.findById(id).orElseThrow(()-> new RuntimeException("Registro não encontrado"));
 
-        return pedido == null
-                ? null
-                : modelMapper.map(pedido, PedidoDTO.class);
+
+        return modelMapper.map(pedido, PedidoDTO.class);
     }
 
     public void cadastrar(PedidoDTO pedidoDTO)
@@ -60,10 +59,8 @@ public class PedidoService {
 
     public void editar(PedidoDTO pedidoDTO, Long id)
     {
-        Assert.isTrue(pedidoRepository.doesExist(id), "Pedido não existe");
 
-
-        Pedido pedido = this.pedidoRepository.findById(id).orElse(null);
+        Pedido pedido = this.pedidoRepository.findById(id).orElseThrow(()-> new RuntimeException("Registro não encontrado"));
         modelMapper.map(pedidoDTO, pedido);
 
         this.pedidoRepository.save(pedido);
@@ -71,9 +68,7 @@ public class PedidoService {
 
     public void deletar(Long id)
     {
-        Pedido pedido = this.pedidoRepository.findById(id).orElse(null);
-
-        Assert.notNull(pedido, "Esse pedido não existe");
+        Pedido pedido = this.pedidoRepository.findById(id).orElseThrow(()-> new RuntimeException("Registro não encontrado"));
 
         pedido.setAtivo(false);
         this.pedidoRepository.save(pedido);
