@@ -57,14 +57,14 @@ public class EnderecoController {
     }
 
     @PutMapping
-    ResponseEntity<String> editar(
+    public ResponseEntity<String> editar(
             @RequestParam("id") final Long id,
             @RequestBody final EnderecoDTO enderecoDTO)
     {
         try {
             this.enderecoService.editar(enderecoDTO, id);
 
-            return ResponseEntity.ok("Funcionario alterado com sucesso");
+            return ResponseEntity.ok("Endereço alterado com sucesso");
         }
         catch (Exception e)
         {
@@ -72,7 +72,8 @@ public class EnderecoController {
         }
     }
 
-    @DeleteMapping ResponseEntity<String> deletar(@RequestParam("id") final Long id)
+    @DeleteMapping
+    public ResponseEntity<String> deletar(@RequestParam("id") final Long id)
     {
         try {
             if(this.enderecoService.deletar(id)){
