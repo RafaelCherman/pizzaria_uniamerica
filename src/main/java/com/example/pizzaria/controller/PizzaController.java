@@ -1,6 +1,6 @@
 package com.example.pizzaria.controller;
 
-import com.example.pizzaria.dto.PizzaDTO;
+import com.example.pizzaria.DTO.PizzaDTO;
 import com.example.pizzaria.entity.Pizza;
 import com.example.pizzaria.service.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +35,9 @@ public class PizzaController {
 @PostMapping
     public ResponseEntity<String> cadastrar(@Validated @RequestBody final PizzaDTO pizza){
         try{
-            this.pizzaService.cadastrar(pizza);
 
-            return ResponseEntity.ok("Cadastrado com sucesso!");
+
+            return ResponseEntity.ok(this.pizzaService.cadastrar(pizza));
         }
         catch (Exception e)
         {
@@ -50,9 +50,9 @@ public class PizzaController {
     public ResponseEntity<String> editar(@Validated @RequestParam("id") final Long id, @RequestBody final PizzaDTO pizza){
 
         try{
-            this.pizzaService.editar(pizza, id);
 
-            return ResponseEntity.ok("Editado com sucesso!");
+
+            return ResponseEntity.ok( this.pizzaService.editar(pizza, id));
         }
         catch (Exception e)
         {

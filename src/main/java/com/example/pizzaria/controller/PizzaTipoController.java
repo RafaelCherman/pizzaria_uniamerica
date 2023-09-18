@@ -1,7 +1,6 @@
 package com.example.pizzaria.controller;
 
-import com.example.pizzaria.dto.PizzaTipoDTO;
-import com.example.pizzaria.dto.ProdutoDiversoDTO;
+import com.example.pizzaria.DTO.PizzaTipoDTO;
 import com.example.pizzaria.repository.PizzaTipoRepository;
 import com.example.pizzaria.repository.ProdutoDiversoRepositorio;
 import com.example.pizzaria.service.PizzaTipoService;
@@ -19,30 +18,21 @@ import java.util.List;
 public class PizzaTipoController {
 
     @Autowired
-    private PizzaTipoRepository pizzaTipoRepository;
-    @Autowired
     private PizzaTipoService pizzaTipoService;
 
     @PostMapping
     public ResponseEntity<String> cadastrar(@RequestBody final PizzaTipoDTO pizzaTipoDTO) {
-
         try {
-            this.pizzaTipoService.cadastrar(pizzaTipoDTO);
-
-            return ResponseEntity.ok("Cadastrado com sucesso!");
+            return ResponseEntity.ok( this.pizzaTipoService.cadastrar(pizzaTipoDTO));
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
-
     }
 
     @PutMapping
     public ResponseEntity<String> editar(@RequestParam("id") final Long id, @RequestBody final PizzaTipoDTO pizzaTipoDTO) {
-
         try {
-            this.pizzaTipoService.editar(pizzaTipoDTO, id);
-
-            return ResponseEntity.ok("Editado com sucesso!");
+            return ResponseEntity.ok(this.pizzaTipoService.editar(pizzaTipoDTO, id));
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
@@ -58,8 +48,7 @@ public class PizzaTipoController {
     }
 
     @GetMapping
-    public ResponseEntity<PizzaTipoDTO> findById(@RequestParam("id") final Long id) {
-
+    public ResponseEntity<PizzaTipoDTO> buscar(@RequestParam("id") final Long id) {
         try {
             return ResponseEntity.ok(this.pizzaTipoService.findById(id));
         } catch (Exception e) {
@@ -70,8 +59,7 @@ public class PizzaTipoController {
     @DeleteMapping
     public ResponseEntity<String> deletar(@RequestParam("id") final Long id) {
         try {
-            this.pizzaTipoRepository.deleteById(id);
-            return ResponseEntity.ok("Deletado com sucesso!");
+            return ResponseEntity.ok(this.pizzaTipoService.deletar(id));
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
