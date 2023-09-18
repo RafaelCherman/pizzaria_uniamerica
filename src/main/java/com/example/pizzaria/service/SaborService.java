@@ -19,14 +19,14 @@ public class SaborService {
     @Autowired
     private SaborRepository saborRepository;
 
-    public void cadastrar(SaborDTO saborDTO) {
+    public String cadastrar(SaborDTO saborDTO) {
         if (this.saborRepository.existsByNome(saborDTO.getNome())) {
             throw new RuntimeException("Sabor já cadastrado");
         }
         Sabor sabor = convertToEntity(saborDTO);
         this.saborRepository.save(sabor);
+        return "Sabor cadastrado com sucesso";
     }
-
     public String editar(SaborDTO saborDTO, Long id) {
         Long idFront = id;
         if (saborDTO.getId() != idFront) {
@@ -38,16 +38,6 @@ public class SaborService {
         this.saborRepository.save(sabor);
         return "Sabor editado com sucesso";
     }
-
-
-    public Sabor convertToEntity(SaborDTO saborDTO) {
-        Sabor sabor = new Sabor();
-        sabor.setSabor(saborDTO.getNome());
-        sabor.setValor(saborDTO.getValor());
-        sabor.setIngredientes(saborDTO.getIngredientes());
-        return sabor;
-    }
-
     public List<SaborDTO> findAll() {
         List<Sabor> sabores = this.saborRepository.findAll();
         if(sabores.isEmpty()){
@@ -61,14 +51,12 @@ public class SaborService {
         return saboresDTO;
 
     }}
-
     public SaborDTO findById(Long id) {
         Sabor sabor = this.saborRepository.findById(id).orElse(null);
         return sabor == null
                 ? null
                 : convertToDTO(sabor);
     }
-
     public String deletar(Long id){
         if(saborRepository.saborExistTb_pizza(id)){
             Optional<Sabor> sabor = this.saborRepository.findById(id);
@@ -80,7 +68,6 @@ public class SaborService {
             return "Sabor deletado com sucesso";
         }
     }
-
     public SaborDTO convertToDTO(Sabor sabor) {
         SaborDTO saborDTO = new SaborDTO();
         saborDTO.setNome(sabor.getSabor());
@@ -90,5 +77,12 @@ public class SaborService {
         return saborDTO;
 
 
+    }
+    public Sabor convertToEntity(SaborDTO saborDTO) {
+        Sabor sabor = new Sabor();
+        sabor.setSabor(saborDTO.getNome());
+        sabor.setValor(saborDTO.getValor());
+        sabor.setIngredientes(saborDTO.getIngredientes());
+        return sabor;
     }
 }

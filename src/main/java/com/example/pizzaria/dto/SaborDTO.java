@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NotBlank(message = "O campo nome não pode ser vazio")
 @NoArgsConstructor
 @AllArgsConstructor
-public class SaborDTO extends AbstractEntityDTO{
+public class SaborDTO extends AbstractEntityDTO {
 
     @Size(min = 3, max = 150, message = "O nome deve ter entre 3 e 150 caracteres")
     private String nome;

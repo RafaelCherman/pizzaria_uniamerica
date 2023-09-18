@@ -7,13 +7,14 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.example.pizzaria.dto.AbstractEntityDTO;
 
 @Data
 @NotNull(message = "O campo nome é obrigatório")
 @NotBlank(message = "O campo nome não pode ser vazio")
 @NoArgsConstructor
 @AllArgsConstructor
-public class PizzaTipoDTO extends AbstractEntityDTO{
+public class PizzaTipoDTO extends AbstractEntityDTO {
 
     @Size(min = 3, max = 250, message = "O nome deve ter entre 3 e 250 caracteres")
     private String nome;

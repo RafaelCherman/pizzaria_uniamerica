@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "tb_pizzas", schema = "public")
 @Data
@@ -15,8 +17,13 @@ public class Pizza extends AbstractEntity{
     @OneToOne
     private PizzaTipo tipo;
     @JoinColumn(name="co_sabor")
-    @ManyToOne
-    private Sabor sabor;
+    @OneToMany
+    private List<Sabor> sabor;
+
+
+
+    @Column(name = "vl_pizza")
+    private Double valorPizza;
 
 
 }
