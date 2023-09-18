@@ -3,6 +3,7 @@ package com.example.pizzaria.service;
 import com.example.pizzaria.dto.ClienteDTO;
 import com.example.pizzaria.entity.Cliente;
 import com.example.pizzaria.repository.ClienteRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -16,6 +17,9 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     public List<ClienteDTO> findAll()
     {
         List<Cliente> clientes = this.clienteRepository.findAll();
@@ -23,7 +27,7 @@ public class ClienteService {
 
         for(Cliente i : clientes)
         {
-            clientesDTO.add(convertToDTO(i));
+            clientesDTO.add(modelMapper.map(i, ClienteDTO.class));
         }
 
         return clientesDTO;
@@ -32,11 +36,9 @@ public class ClienteService {
 
     public ClienteDTO findById(Long id)
     {
-        Cliente cliente = this.clienteRepository.findById(id).orElse(null);
+        Cliente cliente = this.clienteRepository.findById(id).orElseThrow(()-> new RuntimeException("Registro não encontrado"));
 
-        return cliente == null
-                ? null
-                : convertToDTO(cliente);
+        return modelMapper.map(cliente, ClienteDTO.class);
     }
 
     public void cadastrar(ClienteDTO clienteDTO)
@@ -46,13 +48,12 @@ public class ClienteService {
         Assert.notNull(clienteDTO.getCpf(), "CPF não pode ser nulo");
         Assert.isTrue(!(this.clienteRepository.alreadyExists(clienteDTO.getCpf())), "CPF já cadastrado");
 
-        Cliente cliente = convertToEntity(clienteDTO);
-
-        this.clienteRepository.save(cliente);
+        this.clienteRepository.save(modelMapper.map(clienteDTO, Cliente.class));
     }
 
     public void editar(ClienteDTO clienteDTO, Long id)
     {
+        Cliente cliente = this.clienteRepository.findById(id).orElseThrow(()-> new RuntimeException("Registro não encontrado"));
         Assert.notNull(clienteDTO.getNome(), "Nome não pode ser nulo");
         Assert.notNull(clienteDTO.getTelCelular(), "Telefone não pode ser nulo");
         Assert.notNull(clienteDTO.getCpf(), "CPF não pode ser nulo");
@@ -61,44 +62,17 @@ public class ClienteService {
             Assert.isTrue( this.clienteRepository.isTheSame(clienteDTO.getCpf()).equals(id), "CPF já cadastrado");
         }
 
-        Cliente cliente = convertToEntity(clienteDTO);
+        modelMapper.map(clienteDTO,cliente);
 
         this.clienteRepository.save(cliente);
     }
 
     public boolean deletar(Long id)
     {
+        Cliente cliente = this.clienteRepository.findById(id).orElseThrow(()-> new RuntimeException("Registro não encontrado"));
+        cliente.setAtivo(false);
+        this.clienteRepository.save(cliente);
         return true;
     }
-
-
-    private ClienteDTO convertToDTO(Cliente cliente)
-    {
-        ClienteDTO clienteDTO = new ClienteDTO();
-
-        clienteDTO.setId(cliente.getId());
-        clienteDTO.setNome(cliente.getNome());
-        clienteDTO.setCpf(cliente.getCpf());
-        clienteDTO.setTelCelular(cliente.getTelCelular());
-
-        return clienteDTO;
-    }
-
-    private Cliente convertToEntity(ClienteDTO clienteDTO)
-    {
-        Cliente cliente = new Cliente();
-
-        cliente.setCpf(clienteDTO.getCpf());
-        cliente.setNome(clienteDTO.getNome());
-        cliente.setTelCelular(clienteDTO.getTelCelular());
-
-        return cliente;
-    }
-
-
-
-
-
-
 
 }
