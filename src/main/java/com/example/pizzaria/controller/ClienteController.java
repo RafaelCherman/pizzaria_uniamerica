@@ -57,14 +57,14 @@ public class ClienteController {
     }
 
     @PutMapping
-    ResponseEntity<String> editar(
+    public ResponseEntity<String> editar(
             @RequestParam("id") final Long id,
             @RequestBody final ClienteDTO clienteDTO)
     {
         try {
             this.clienteService.editar(clienteDTO, id);
 
-            return ResponseEntity.ok("Funcionario alterado com sucesso");
+            return ResponseEntity.ok("Cliente alterado com sucesso");
         }
         catch (Exception e)
         {
@@ -72,14 +72,15 @@ public class ClienteController {
         }
     }
 
-    @DeleteMapping ResponseEntity<String> deletar(@RequestParam("id") final Long id)
+    @DeleteMapping
+    public ResponseEntity<String> deletar(@RequestParam("id") final Long id)
     {
         try {
             if(this.clienteService.deletar(id)){
-                return ResponseEntity.ok("Funcionario desativado");
+                return ResponseEntity.ok("Cliente desativado");
             }
             else{
-                return ResponseEntity.ok("Funcionario deletado");
+                return ResponseEntity.ok("Cliente deletado");
             }
         }
         catch (Exception e)

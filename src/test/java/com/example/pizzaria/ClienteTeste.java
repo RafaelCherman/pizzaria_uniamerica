@@ -5,10 +5,10 @@ import com.example.pizzaria.dto.ClienteDTO;
 import com.example.pizzaria.entity.Cliente;
 import com.example.pizzaria.repository.ClienteRepository;
 import com.example.pizzaria.service.ClienteService;
-import lombok.var;
 import org.junit.Assert;
 import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,7 +28,7 @@ public class ClienteTeste {
     @Autowired
     ClienteController clienteController;
 
-    @BeforeClass
+    @BeforeEach
     void injectDado(){
 
         Cliente cliente = new Cliente();
@@ -56,10 +56,10 @@ public class ClienteTeste {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void TesteFindByID(){
         var cliente = clienteController.findById(1l);
-        Assert.assertEquals(1, cliente.getBody().getId(),0);
+        Assert.assertEquals(1l,cliente.getBody().getId(),0);
     }
 
     @Test
@@ -69,13 +69,31 @@ public class ClienteTeste {
     }
 
     @Test
-    void TesteUpdate(){
+    void TesteCadastrarCliente(){
+        ClienteDTO clienteDTO = new ClienteDTO("Eduardo", "45 99815-2683", "109.989.963-75");
+        var cliente = clienteController.cadastrar(clienteDTO);
+        Assert.assertEquals("Cliente cadastrado com sucesso",cliente.getBody());
+    }
 
+    @Test
+    void TesteAtualizar(){
+        ClienteDTO clienteDTO = new ClienteDTO();
+        clienteDTO.setId(1L);
+        clienteDTO.setCpf("000.111.222-98");
+        clienteDTO.setTelCelular("45 99985-5522");
+        clienteDTO.setNome("Eduardo Souza");
+
+        var cliente = clienteController.editar(1L, clienteDTO);
+        Assert.assertEquals(200, cliente.getStatusCodeValue());
 
     }
 
 
+    @Test
+    void TesteDelete(){
+        var cliente = clienteController.deletar(1l);
+        Assert.assertEquals("Cliente desativado",cliente.getBody());
 
-
+    }
 
 }
