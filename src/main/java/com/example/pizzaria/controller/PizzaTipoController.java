@@ -1,6 +1,6 @@
 package com.example.pizzaria.controller;
 
-import com.example.pizzaria.DTO.PizzaTipoDTO;
+import com.example.pizzaria.dto.PizzaTipoDTO;
 import com.example.pizzaria.repository.PizzaTipoRepository;
 import com.example.pizzaria.repository.ProdutoDiversoRepositorio;
 import com.example.pizzaria.service.PizzaTipoService;

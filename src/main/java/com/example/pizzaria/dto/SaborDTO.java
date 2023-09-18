@@ -1,4 +1,4 @@
-package com.example.pizzaria.DTO;
+package com.example.pizzaria.dto;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Min;

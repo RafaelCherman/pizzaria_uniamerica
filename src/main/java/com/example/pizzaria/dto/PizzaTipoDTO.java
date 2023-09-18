@@ -1,4 +1,4 @@
-package com.example.pizzaria.DTO;
+package com.example.pizzaria.dto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.example.pizzaria.DTO.AbstractEntityDTO;
+import com.example.pizzaria.dto.AbstractEntityDTO;
 
 @Data
 @NotNull(message = "O campo nome é obrigatório")
