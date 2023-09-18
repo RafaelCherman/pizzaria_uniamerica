@@ -45,6 +45,7 @@ public class SaborTeste {
         List<SaborDTO> saboresDTO = new ArrayList<>();
         saboresDTO.add(saborDTO);
 
+
         Mockito.when(saborRepository.findById(sabor.getId())).thenReturn(Optional.of(sabor));
         Mockito.when(saborRepository.findByNome(sabor.getSabor())).thenReturn(sabor);
         Mockito.when(saborRepository.findAll()).thenReturn(sabores);
