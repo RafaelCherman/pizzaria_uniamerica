@@ -43,9 +43,6 @@ public class ClienteService {
 
     public void cadastrar(ClienteDTO clienteDTO)
     {
-        Assert.notNull(clienteDTO.getNome(), "Nome não pode ser nulo");
-        Assert.notNull(clienteDTO.getTelCelular(), "Telefone não pode ser nulo");
-        Assert.notNull(clienteDTO.getCpf(), "CPF não pode ser nulo");
         Assert.isTrue(!(this.clienteRepository.alreadyExists(clienteDTO.getCpf())), "CPF já cadastrado");
 
         this.clienteRepository.save(modelMapper.map(clienteDTO, Cliente.class));
@@ -54,9 +51,6 @@ public class ClienteService {
     public void editar(ClienteDTO clienteDTO, Long id)
     {
         Cliente cliente = this.clienteRepository.findById(id).orElseThrow(()-> new RuntimeException("Registro não encontrado"));
-        Assert.notNull(clienteDTO.getNome(), "Nome não pode ser nulo");
-        Assert.notNull(clienteDTO.getTelCelular(), "Telefone não pode ser nulo");
-        Assert.notNull(clienteDTO.getCpf(), "CPF não pode ser nulo");
         if(this.clienteRepository.alreadyExists(clienteDTO.getCpf()))
         {
             Assert.isTrue( this.clienteRepository.isTheSame(clienteDTO.getCpf()).equals(id), "CPF já cadastrado");

@@ -41,9 +41,6 @@ public class FuncionarioService {
 
     public void cadastrar(FuncionarioDTO funcionarioDTO)
     {
-        Assert.notNull(funcionarioDTO.getFuncao(), "Função não pode ser nula");
-        Assert.notNull(funcionarioDTO.getNome(), "Nome não pode ser nulo");
-        Assert.notNull(funcionarioDTO.getCpf(), "CPF não pode ser nulo");
         Assert.isTrue(!(this.funcionarioRepository.alreadyExists(funcionarioDTO.getCpf())), "CPF já cadastrado");
 
 
@@ -53,9 +50,6 @@ public class FuncionarioService {
     public void editar(FuncionarioDTO funcionarioDTO, Long id)
     {
         Funcionario funcionario = this.funcionarioRepository.findById(id).orElseThrow(()-> new RuntimeException("Registro não encontrado"));
-        Assert.notNull(funcionarioDTO.getFuncao(), "Função não pode ser nula");
-        Assert.notNull(funcionarioDTO.getNome(), "Nome não pode ser nulo");
-        Assert.notNull(funcionarioDTO.getCpf(), "CPF não pode ser nulo");
         if(this.funcionarioRepository.alreadyExists(funcionarioDTO.getCpf()))
         {
             Assert.isTrue( this.funcionarioRepository.isTheSame(funcionarioDTO.getCpf()).equals(id) ,"Ja existe");
@@ -72,5 +66,5 @@ public class FuncionarioService {
         this.funcionarioRepository.save(funcionario);
         return true;
     }
-    
+
 }

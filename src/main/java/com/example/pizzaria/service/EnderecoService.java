@@ -44,21 +44,12 @@ public class EnderecoService {
 
     public void cadastrar(EnderecoDTO enderecoDTO)
     {
-        Assert.notNull(enderecoDTO.getRua(), "Rua não pode ser nula");
-        Assert.notNull(enderecoDTO.getNuEndereco(), "Numero do endereço não pode ser nulo");
-        Assert.notNull(enderecoDTO.getBairro(), "Bairro não pode ser nulo");
-        Assert.notNull(enderecoDTO.getCliente(), "Cliente não pode ser nulo");
-
         this.enderecoRepository.save(modelMapper.map(enderecoDTO, Endereco.class));
     }
 
     public void editar(EnderecoDTO enderecoDTO, Long id)
     {
         Endereco endereco = this.enderecoRepository.findById(id).orElseThrow(()-> new RuntimeException("Registro não encontrado"));
-        Assert.notNull(enderecoDTO.getRua(), "Rua não pode ser nula");
-        Assert.notNull(enderecoDTO.getNuEndereco(), "Numero do endereço não pode ser nulo");
-        Assert.notNull(enderecoDTO.getBairro(), "Bairro não pode ser nulo");
-        Assert.notNull(enderecoDTO.getCliente(), "Cliente não pode ser nulo");
 
         modelMapper.map(enderecoDTO,endereco);
         this.enderecoRepository.save(endereco);
