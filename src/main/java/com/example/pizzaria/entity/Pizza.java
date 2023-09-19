@@ -26,4 +26,7 @@ public class Pizza extends AbstractEntity{
     private Double valorPizza;
 
 
+    public Pizza(PizzaTipo pizzaTipo, Sabor sabor) {
+        super();
+    }
 }
